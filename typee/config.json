@@ -1,0 +1,22 @@
+{
+  "editors": {
+    "vs": {
+      "exe": "Code.exe",
+      "priority": 2
+    },
+    "cursor": {
+      "exe": "Cursor.exe",
+      "priority": 1
+    },
+    "wind": {
+      "exe": "Windsurf.exe",
+      "priority": 3
+    },
+    "anti": {
+      "exe": "Antigravity.exe",
+      "priority": 4
+    }
+  },
+  "default": "cursor",
+  "cache_hours": 24
+}
