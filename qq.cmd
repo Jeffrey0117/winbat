@@ -1,19 +1,19 @@
 @echo off
 setlocal enabledelayedexpansion
-REM Claude Command - run in current directory
+REM Qwen Command - run in current directory
 REM Echo cc-switch project for reference
 echo For multi-AI CLI tool switching, check out: https://github.com/farion1231/cc-switch
 echo.
 
-REM Check if claude is installed
-where claude >nul 2>nul
+REM Check if qwen is installed
+where qwen >nul 2>nul
 if !errorlevel! equ 0 (
-    echo Claude CLI found, starting...
-    claude
+    echo Qwen CLI found, starting...
+    qwen
     goto :end
 )
 
-echo Claude CLI not found. Attempting to install...
+echo Qwen CLI not found. Attempting to install...
 
 REM Check if npm is available
 where npm >nul 2>nul
@@ -49,22 +49,37 @@ if !errorlevel! neq 0 (
     echo npm should now be available.
 )
 
-echo Installing Claude CLI via npm...
+echo Installing Qwen CLI via npm...
+echo Trying possible Qwen CLI packages...
 
-REM Try the official package name
-npm install -g @anthropic-ai/claude-code
+REM Try multiple possible package names
+npm install -g qwen-cli 2>nul
 if !errorlevel! neq 0 (
-    echo ERROR: Failed to install Claude CLI.
-    echo Please install Claude CLI manually:
-    echo   npm install -g @anthropic-ai/claude-code
-    echo.
-    echo Or visit: https://claude.ai/claude-code
-    pause
-    exit /b 1
+    npm install -g @qwenex/qwen-cli 2>nul
+    if !errorlevel! neq 0 (
+        npm install -g @alibaba/qwen-cli 2>nul
+        if !errorlevel! neq 0 (
+            npm install -g qwen 2>nul
+            if !errorlevel! neq 0 (
+                echo ERROR: Failed to install Qwen CLI with common package names.
+                echo Please install Qwen CLI manually.
+                echo Search for available packages: npm search qwen-cli
+                echo.
+                echo Common possibilities:
+                echo - qwen-cli
+                echo - @qwenex/qwen-cli
+                echo - @alibaba/qwen-cli
+                echo - qwen
+                echo.
+                pause
+                exit /b 1
+            )
+        )
+    )
 )
 
-echo Claude CLI installed successfully. Starting...
-claude
+echo Qwen CLI installed successfully. Starting...
+qwen
 
 :end
 endlocal

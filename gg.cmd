@@ -1,19 +1,19 @@
 @echo off
 setlocal enabledelayedexpansion
-REM Claude Command - run in current directory
+REM Gemini Command - run in current directory
 REM Echo cc-switch project for reference
 echo For multi-AI CLI tool switching, check out: https://github.com/farion1231/cc-switch
 echo.
 
-REM Check if claude is installed
-where claude >nul 2>nul
+REM Check if gemini is installed
+where gemini >nul 2>nul
 if !errorlevel! equ 0 (
-    echo Claude CLI found, starting...
-    claude
+    echo Gemini CLI found, starting...
+    gemini
     goto :end
 )
 
-echo Claude CLI not found. Attempting to install...
+echo Gemini CLI not found. Attempting to install...
 
 REM Check if npm is available
 where npm >nul 2>nul
@@ -49,22 +49,28 @@ if !errorlevel! neq 0 (
     echo npm should now be available.
 )
 
-echo Installing Claude CLI via npm...
+echo Installing Gemini CLI via npm...
+echo Trying common Gemini CLI packages...
 
-REM Try the official package name
-npm install -g @anthropic-ai/claude-code
+REM Try multiple possible package names
+npm install -g @anthropic-ai/gemini-cli 2>nul
 if !errorlevel! neq 0 (
-    echo ERROR: Failed to install Claude CLI.
-    echo Please install Claude CLI manually:
-    echo   npm install -g @anthropic-ai/claude-code
-    echo.
-    echo Or visit: https://claude.ai/claude-code
-    pause
-    exit /b 1
+    npm install -g gemini-cli 2>nul
+    if !errorlevel! neq 0 (
+        npm install -g @google/gemini-cli 2>nul
+        if !errorlevel! neq 0 (
+            echo ERROR: Failed to install Gemini CLI with common package names.
+            echo Please install Gemini CLI manually.
+            echo Common packages: gemini-cli, @google/gemini-cli
+            echo Or search: npm search gemini-cli
+            pause
+            exit /b 1
+        )
+    )
 )
 
-echo Claude CLI installed successfully. Starting...
-claude
+echo Gemini CLI installed successfully. Starting...
+gemini
 
 :end
 endlocal
