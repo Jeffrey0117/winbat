@@ -26,6 +26,7 @@ uninstall.bat
 | Command | Description |
 |---------|-------------|
 | `cc` | Launch Claude Code in current directory |
+| `path` | Manage user PATH (add/remove/list) |
 | `typee` | Editor Abstraction Layer - open files with any editor |
 
 ### Unix Commands (via [cmdx](https://github.com/Jeffrey0117/cmdx))
@@ -58,6 +59,14 @@ See [typee/README.md](typee/README.md) for full docs.
 
 ```batch
 cc                        # launch Claude Code here
+```
+
+### path
+
+```batch
+path list                 # list user PATH entries
+path add C:\mytool        # add directory to PATH
+path remove C:\mytool     # remove from PATH
 ```
 
 ### Unix commands
