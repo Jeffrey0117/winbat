@@ -1,6 +1,8 @@
 # winbat
 
-My personal Windows CLI toolkit. Clone once, install, done.
+Personal Windows CLI toolkit. Clone once, install, done.
+
+Part of a cross-platform CLI tooling family — see [Related Projects](#related-projects).
 
 ## Installation
 
@@ -21,13 +23,34 @@ uninstall.bat
 
 ## Tools
 
-### Custom Tools
+### Claude Code Shortcuts
 
 | Command | Description |
 |---------|-------------|
-| `cc` | Launch Claude Code in current directory |
-| `path` | Manage user PATH (add/remove/list) |
-| `typee` | Editor Abstraction Layer - open files with any editor |
+| `cc` | Launch Claude Code in current directory (auto-installs if missing) |
+| `cdcc <dir>` | cd into a directory, then launch Claude Code |
+| `clonecc <url> [dir]` | git clone a repo, cd into it, then launch Claude Code |
+
+### Navigation & Filesystem
+
+| Command | Description |
+|---------|-------------|
+| `desk` | cd to Desktop |
+| `mkcd <dir>` | Create a directory and cd into it |
+
+### System Utilities
+
+| Command | Description |
+|---------|-------------|
+| `ip` | Show local IPv4 addresses |
+| `ports` | Show listening ports with process info |
+| `path` | Manage user PATH (add / remove / list) |
+
+### Editor
+
+| Command | Description |
+|---------|-------------|
+| `typee` | Editor Abstraction Layer — open files with any editor |
 
 ### Unix Commands (via [cmdx](https://github.com/Jeffrey0117/cmdx))
 
@@ -42,9 +65,35 @@ hostname, uname, free, du, wget, open, xdg-open, pbcopy, nano, vi, vim
 
 Each command auto-detects better tools (like `lsd`, `bat`, `rg`) and falls back to Windows native if not installed.
 
-## Tool Details
+## Usage Examples
 
-### typee
+### Claude Code Shortcuts
+
+```batch
+cc                                          # launch Claude Code here
+cdcc myproject                              # cd + Claude Code
+clonecc https://github.com/user/repo.git    # clone + cd + Claude Code
+clonecc https://github.com/user/repo mydir  # clone into mydir + cd + Claude Code
+```
+
+### Navigation & Filesystem
+
+```batch
+desk                  # jump to Desktop
+mkcd new-project      # create and enter directory
+```
+
+### System Utilities
+
+```batch
+ip                    # show local IPv4 addresses
+ports                 # show listening ports
+path list             # list user PATH entries
+path add C:\mytool    # add directory to PATH
+path remove C:\mytool # remove from PATH
+```
+
+### Editor
 
 ```batch
 typee file.txt            # type (print)
@@ -55,21 +104,7 @@ typee --editors           # list available editors
 
 See [typee/README.md](typee/README.md) for full docs.
 
-### cc
-
-```batch
-cc                        # launch Claude Code here
-```
-
-### path
-
-```batch
-path list                 # list user PATH entries
-path add C:\mytool        # add directory to PATH
-path remove C:\mytool     # remove from PATH
-```
-
-### Unix commands
+### Unix Commands
 
 ```batch
 ls                        # uses lsd/eza if installed, else dir
@@ -101,6 +136,16 @@ copy out\*.bat C:\dev\winbat\cmdx\
 git clone https://github.com/Jeffrey0117/winbat.git C:\dev\winbat
 C:\dev\winbat\install.bat
 ```
+
+## Related Projects
+
+| Project | Description |
+|---------|-------------|
+| [cmdx](https://github.com/Jeffrey0117/cmdx) | Unix commands on Windows (generator) |
+| **winbat** | Personal CLI toolkit (distribution) — *this repo* |
+| [wcmd](https://github.com/Jeffrey0117/wcmd) | Windows commands on Linux |
+
+**cmdx** generates the Unix command shims that **winbat** distributes. **wcmd** is the reverse — bringing Windows commands to Linux. Together they provide a consistent CLI experience across platforms.
 
 ## License
 
