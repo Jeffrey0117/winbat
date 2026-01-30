@@ -1,8 +1,17 @@
+<div align="center">
+
 # winbat
 
-Personal Windows CLI toolkit. Clone once, install, done.
+**Personal Windows CLI toolkit. Clone once, install, done.**
 
-Part of a cross-platform CLI tooling family — see [Related Projects](#related-projects).
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)]()
+
+[cmdx](https://github.com/Jeffrey0117/cmdx) (Unix → Windows generator) · **winbat** (CLI toolkit) · [wcmd](https://github.com/Jeffrey0117/wcmd) (Windows → Linux)
+
+</div>
+
+---
 
 ## Installation
 
@@ -20,6 +29,8 @@ Restart terminal. All tools available.
 cd C:\dev\winbat
 uninstall.bat
 ```
+
+---
 
 ## Tools
 
@@ -64,6 +75,8 @@ hostname, uname, free, du, wget, open, xdg-open, pbcopy, nano, vi, vim
 ```
 
 Each command auto-detects better tools (like `lsd`, `bat`, `rg`) and falls back to Windows native if not installed.
+
+---
 
 ## Usage Examples
 
@@ -112,6 +125,8 @@ cat file.txt              # uses bat if installed, else type
 grep pattern file         # uses rg if installed, else findstr
 ```
 
+---
+
 ## Adding New Tools
 
 1. Create `mytool.bat` or `mytool.cmd` in root, or
@@ -137,15 +152,7 @@ git clone https://github.com/Jeffrey0117/winbat.git C:\dev\winbat
 C:\dev\winbat\install.bat
 ```
 
-## Related Projects
-
-| Project | Description |
-|---------|-------------|
-| [cmdx](https://github.com/Jeffrey0117/cmdx) | Unix commands on Windows (generator) |
-| **winbat** | Personal CLI toolkit (distribution) — *this repo* |
-| [wcmd](https://github.com/Jeffrey0117/wcmd) | Windows commands on Linux |
-
-**cmdx** generates the Unix command shims that **winbat** distributes. **wcmd** is the reverse — bringing Windows commands to Linux. Together they provide a consistent CLI experience across platforms.
+---
 
 ## License
 
