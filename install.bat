@@ -24,22 +24,24 @@ echo.
 
 :: Use PowerShell to add to user PATH permanently
 powershell -Command ^
-    "$oldPath = [Environment]::GetEnvironmentVariable('PATH', 'User'); ^
-     if ($oldPath -notlike '*%WINBAT_DIR%*') { ^
-         $newPath = $oldPath + ';%WINBAT_DIR%'; ^
-         [Environment]::SetEnvironmentVariable('PATH', $newPath, 'User'); ^
-         Write-Host '[OK] Added to user PATH (permanent)' -ForegroundColor Green ^
-     }"
+    "$oldPath = [Environment]::GetEnvironmentVariable('PATH', 'User');" ^
+    "if ($oldPath -notlike '*%WINBAT_DIR%*') {" ^
+    "    $newPath = $oldPath + ';%WINBAT_DIR%';" ^
+    "    [Environment]::SetEnvironmentVariable('PATH', $newPath, 'User');" ^
+    "    Write-Host '[OK] Added to user PATH (permanent)' -ForegroundColor Green" ^
+    "}"
 
-:: Also add subdirectories (typee, etc.)
+:: Also add subdirectories (cmdx, typee, etc.) but skip .git
 for /d %%d in ("%WINBAT_DIR%\*") do (
-    echo Adding: %%d
-    powershell -Command ^
-        "$oldPath = [Environment]::GetEnvironmentVariable('PATH', 'User'); ^
-         if ($oldPath -notlike '*%%d*') { ^
-             $newPath = $oldPath + ';%%d'; ^
-             [Environment]::SetEnvironmentVariable('PATH', $newPath, 'User'); ^
-         }"
+    if /i not "%%~nxd"==".git" (
+        echo Adding: %%d
+        powershell -Command ^
+            "$oldPath = [Environment]::GetEnvironmentVariable('PATH', 'User');" ^
+            "if ($oldPath -notlike '*%%d*') {" ^
+            "    $newPath = $oldPath + ';%%d';" ^
+            "    [Environment]::SetEnvironmentVariable('PATH', $newPath, 'User')" ^
+            "}"
+    )
 )
 
 echo.
