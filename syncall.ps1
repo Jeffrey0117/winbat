@@ -1,4 +1,4 @@
-# syncall — 掃 Desktop\code 下所有 repo,一眼看哪些落後/領先/有WIP(換機前必看)
+﻿# syncall — 掃 Desktop\code 下所有 repo,一眼看哪些落後/領先/有WIP(換機前必看)
 # 只「顯示」不自動改;要同步某個就進去打 sync。
 $ErrorActionPreference = 'SilentlyContinue'
 $root = "C:\Users\jeffb\Desktop\code"

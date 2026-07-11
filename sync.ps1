@@ -1,4 +1,4 @@
-# sync — 同步「目前所在的 git repo」:fetch → 顯示落後/領先 → 乾淨就自動 pull
+﻿# sync — 同步「目前所在的 git repo」:fetch → 顯示落後/領先 → 乾淨就自動 pull
 # 多機開發用:坐下先打 sync,就不會改到舊版。
 $ErrorActionPreference = 'SilentlyContinue'
 
